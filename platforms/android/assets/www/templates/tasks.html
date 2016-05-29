@@ -1,0 +1,144 @@
+
+
+<ion-view style="" title="Tasks" class="tabs-assertive" animation="slide-left-right" align-title="center">
+ <ion-nav-bar class="bar-assertive"  >
+ <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+<ion-nav-buttons side="right" href="#/dashboardtask/addnewtask">
+      <button class="button button-icon ion-plus-round" ui-sref="dashboardtask.addnewtask"> </button>
+      </ion-nav-buttons>
+
+</div>
+
+</ion-nav-bar>
+
+
+<ion-content class="padding has-header" padding="false" style="padding:0px;">
+
+  <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+  <div class="list" style="margin-bottom:0px;">
+    <label class="item item-input item-select">
+      <div class="input-label" ng-init="sortValue='-task_id'">
+        Sorted by
+      </div>
+      <select ng-model="sortValue">
+
+        <option value="task_name">Name (a-z)</option>
+        <option value="-task_name">Name (z-a)</option>
+        <option selected value="-task_id">Date(latest-oldest)</option>
+        <option value="task_id">Date(oldest-latest)</option>
+
+      </select>
+    </label>
+  </div>
+<ion-list ng-repeat="item in filtered = (tasksdata | filter:{task_status:filterStatus}:true) | filter:{task_deleted:trashStatus}:true | orderBy:sortValue" class="no-padding">
+    <a class="item item-icon-left item-icon-right" ng-click="getSingleData(item)">
+    <i class="icon ion-ios-albums"></i>
+    {{item.task_name}}
+    <span class="label label-info">{{item.task_id}}</span>
+    <span class="label label-danger">{{item.task_priority}}</span>
+    <span class="label label-primary">{{item.task_status}}</span>
+    <p>{{item.task_description}}</p>
+    <i class="icon ion-ios-arrow-forward"></i>
+  </a>
+</ion-list>
+
+<ion-list  class="no-padding" ng-show="filtered.length<1">
+ <span class="item" >
+   No item found in {{filterStatus}}
+ </span>
+</ion-list>
+<ion-side-menus>
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+  <!-- Main content, usually <ion-nav-view> -->
+  </ion-side-menu-content>
+
+  <!-- Right menu -->
+  <ion-side-menu side="right">
+  </ion-side-menu>
+ </ion-content>
+
+
+</ion-side-menus>
+
+
+
+</ion-view>
+<style type="text/css">
+	.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+a.label:hover,
+a.label:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.label:empty {
+  display: none;
+}
+.btn .label {
+  position: relative;
+  top: -1px;
+}
+.label-default {
+  background-color: #777777;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+  background-color: #5e5e5e;
+}
+.label-primary {
+  background-color: #337ab7;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #286090;
+}
+.label-success {
+  background-color: #5cb85c;
+}
+.label-success[href]:hover,
+.label-success[href]:focus {
+  background-color: #449d44;
+}
+.label-info {
+  background-color: #5bc0de;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+  background-color: #31b0d5;
+}
+.label-warning {
+  background-color: #f0ad4e;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+  background-color: #ec971f;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+  background-color: #c9302c;
+}
+</style>

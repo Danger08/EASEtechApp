@@ -1,0 +1,139 @@
+<ion-view style="" title="Chat" animation="slide-left-right" align-title="center">
+  <ion-nav-buttons side="left">
+
+
+        <button class="button" ui-sref="dashboard.others">
+        <i class="icon ion-chevron-left"></i> Back
+        </button>
+      </ion-nav-buttons>
+  <ion-content class="content-stable has-header"
+                id="chat-content">
+
+
+    <div ng-repeat="message in messages"
+       ng-class="{other: message.userid === myId}"
+       class="messages">
+
+    <div class="message" on-hold="setPopOverData(message);">
+      <span>{{ message.reply }} <br> <p class="time">{{message.time}}</p></span>
+    </div>
+  </div>
+
+</ion-content>
+    <ion-footer-bar keyboard-attach class="bar-assertive item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>
+      <button class="button button-clear" ng-click="sendMessage()">
+        Send
+      </button>
+    </ion-footer-bar>
+
+</ion-view>
+<style>
+  .scroll {
+  padding: 10px 0 50px !important;
+}
+#chat-content .messages.other p{
+  text-align: right;
+}
+.messages {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-content: center !important;
+  -ms-flex-line-pack: center !important;
+  align-content: center !important;
+  -webkit-box-align: center !important;
+  -moz-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+}
+.messages .message {
+  -webkit-box-flex: 1 !important;
+  -moz-box-flex: 1 !important;
+  -webkit-flex: 1 1 auto !important;
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+  padding: 10px !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  font-size:16px;
+}
+
+.time {
+  font-size:10px;
+  margin-top:3px;
+  margin-bottom :0px;
+}
+.time.slide-right {
+  -webkit-transform: translate3d(130px, 0, 0) !important;
+  -moz-transform: translate3d(130px, 0, 0) !important;
+  transform: translate3d(130px, 0, 0) !important;
+}
+
+
+#chat-content .messages.other .message.slide-right {
+  -webkit-transform: translate3d(120px, 0, 0) !important;
+  -moz-transform: translate3d(120px, 0, 0) !important;
+  transform: translate3d(120px, 0, 0) !important;
+}
+#chat-content .messages.other .message {
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  text-align: right !important;
+}
+#chat-content .messages.other span {
+  color: white !important;
+  background-color: #007AFF !important;
+}
+
+  #chat-content span {
+    background: #EF473A !important;
+    display: inline-block !important;
+    color: white !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    text-align: left !important;
+    max-width: 240px !important;
+  }
+
+  .bar-footer{
+  height:60px;
+  }
+  .bar.item-input-inset .item-input-wrapper input{
+  height:40px;
+  }
+</style>
+
+<script id="my-popup.html" type="text/ng-template">
+  <div class="list" style="margin:0px;">
+    {{selectedBubbleData}}
+  <a class="item item-icon-left" ng-click="copytoClipboard()">
+    <i class="icon ion-edit" ></i>
+    Copy to clipboard
+  </a>
+  <a class="item item-icon-left" ng-click="showConfirm()" ng-show="selectedBubbleData.userid!==1">
+    <i class="icon ion-trash-b"></i>
+    Delete
+  </a>
+</div>
+<style media="screen">
+  .popup-body {
+  padding:0px;
+}
+.popup-buttons{
+  diplay:none;
+}
+</style>
+</script>

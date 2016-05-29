@@ -1,0 +1,108 @@
+<ion-view style="" title="ETS - {{fixInvoiceNumber(singleInvoicedata.invoice_id)}}" animation="slide-left-right" >
+  <ion-nav-bar class="bar-assertive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+        <ion-nav-buttons side="right">
+        <button class="button icon ion-more" ng-click="openPopover($event)">
+
+        </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+    <ion-content class="has-header" overflow-scroll="true" padding="true" ng-init="assignInvoiceData()">
+      <div class="list card">
+
+    <div class="item item-avatar">
+      <img src="img/icon.png">
+      <h2>EASE Technology Solutions</h2>
+      <p>Invoice Date : <strong>{{singleInvoicedata.date | date : 'MMMM/dd/yyyy' }}</strong></p>
+    </div>
+
+    <div class="item item-body">
+      <p>From</br>
+        <strong>EASE Technology Solutions, Inc.</strong></p>
+        <p>Bulihan , Malolos City 3000</br>
+        Philippines</br>
+        Phone: (804) 123-5432</br>
+        Email: info@easetechnologysolutions.com</p>
+      </p>
+      <p>To</br>
+        <strong>{{userdata.firstname}} {{userdata.lastname}}</strong></p>
+        <p>{{userdata.address}}</br>
+
+        Phone: {{userdata.mobile}}</br>
+        Email: {{userdata.email}} </p>
+      <p>
+        <p>
+        <b>Invoice: ETS - {{fixInvoiceNumber(singleInvoicedata.invoice_id)}}</b><br>
+          <br>
+
+          <b>Payment Due:</b> {{singleInvoicedata.due | date : 'MMMM/dd/yyyy' }}<br>
+          <b>Client ID:</b> {{userdata.ease_userid}}</p>
+      </p>
+      <div class="row" style="background-color:#C9C9C9;">
+  <div class="col col-75"><strong>Items</div>
+  <div class="col">Amount</strong></div>
+
+</div>
+<div class="row " style="border: think solid black;" ng-repeat="item in invoiceitem">
+<div class="col col-75 "> <h2 style="margin-bottom:2px;">{{item.name}}</h2>
+    <p style="margin-top:2px;">{{item.description}}</p></div>
+<div class="col"><h2>${{item.price}}</h2></strong></div>
+</div>
+
+<div class="row">
+  <div class="col col-33 col-offset-67">Amount Due <strong> {{singleInvoicedata.due | date : 'MMMM/dd/yyyy' }} </strong></div>
+</div>
+<div class="row">
+  <div class="col col-33 col-offset-67">Total  <br><strong>${{computeTotal(invoiceitem)}} </strong></div>
+</div>
+<div class="item">
+  <h2><strong>Payment Methods : </strong></h2>
+  <div class="" ng-show="singleInvoicedata.status===2">
+    <h2>Pending for Approval : </h2>
+    <p>
+      Device used : {{deviceinfo}} <br>
+      Platform : {{receiptData.client.platform}}<br>
+      Create time : {{receiptData.response.create_time | date : 'MMMM/dd/yyyy'}}<br>
+      Payment id : {{receiptData.response.id | date : 'MMMM/dd/yyyy'}}
+    </p>
+  </div>
+
+  <a  target="_blank" ng-repeat="payment in payment_methodlist" ng-click="payWithPaypal(payment,computeTotal(invoiceitem),fixInvoiceNumber(singleInvoicedata.invoice_id),singleInvoicedata.invoice_id)">
+              <img src="img/paymentimg/{{payment.gateway}}.png" alt="payment.gateway" height="40px" width="auto" ng-show="singleInvoicedata.status!=2">
+  </a>
+  <h2><strong>Notes : </strong></h2>
+  <pre >
+            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+          </pre>
+</div>
+</div>
+
+  </div>
+	<!-- billing
+	<button ng-click ="getFile()">Upload File</button>
+  <button ng-click ="testFileUpload()">Upload</button>
+  <br>
+  {{upload.progress}}
+  <progress  max="1" id="ft-prog" value="{{upload.progress}}"></progress>
+
+  <br>
+  <button type="button" name="button" ng-click="testFileDownload()">Download</button>
+  <progress  max="1" id="ft-prog" value="{{download.progress}}"></progress>
+  {{profile.userProfilePic}}
+  <img ng-src="{{profile.userProfilePic}}" height="300" width="300"></img> -->
+    </ion-content>
+
+</ion-view>
+<script id="InvoicePopover.html" type="text/ng-template">
+     <ion-popover-view>
+       <ion-content>
+         <div class="list">
+           <a class="item" href="http://learn.ionicframework.com/" target="_blank">
+             Learn Ionic
+           </a>
+         </div>
+       </ion-content>
+     </ion-popover-view>
+   </script>

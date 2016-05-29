@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.megster.cordova.FileChooser": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-filepath": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "com.paypal.cordova.mobilesdk": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        },
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.easetechnologysolutions.mobileapp"
+        }
+    }
+}

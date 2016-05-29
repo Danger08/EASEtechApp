@@ -1,0 +1,137 @@
+
+<ion-view style="" title="{{singletaskinfo.task_name}}" animation="slide-left-right">
+
+<ion-nav-bar class="bar-assertive">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+      <button class="button icon ion-more" ng-click="openPopover($event)">
+
+      </button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-content class="padding has-header">
+{{singleInvoicedata}}
+<div class="card">
+  <div class="item item-divider">
+    <h2 style="margin-bottom:5px;">{{singletaskinfo.task_name}}</h2>
+   <span class="label label-danger">{{singletaskinfo.task_priority}}</span>
+   <span class="label label-primary">{{singletaskinfo.task_status}}</span>
+  </div>
+  <div class="item item-text-wrap">
+  <h2>Category</h2>
+  <p>{{singletaskinfo.task_tags}}</p>
+  <h2>Description</h2>
+   <p><pre>{{singletaskinfo.task_description}}</pre></p>
+    <p>
+      <span>Start Date : {{parseDate(singletaskinfo.task_start)}}</span>
+    </p>
+    <p>
+    	<span>Due Date : {{parseDate(singletaskinfo.task_due)}}</span>
+    </p>
+  </div>
+</div>
+
+</ion-content>
+</ion-view>
+
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">More Options</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+
+  <a class="item item-icon-left" ui-sref="dashboardtask.updatetask({ taskinfo : 1})" ng-click="closePopover()">
+    <i class="icon ion-edit"></i>
+    Edit
+  </a>
+
+  <a class="item item-icon-left" ng-click="deleteTask(singletaskinfo.task_id)" ng-show="singletaskinfo.task_deleted === 0">
+    <i class="icon ion-trash-a"></i>
+    Delete
+  </a>
+  <a class="item item-icon-left" ng-click="restoreTask(singletaskinfo.task_id)" ng-show="singletaskinfo.task_deleted === 1">
+    <i class="icon ion-arrow-return-left"></i>
+    Restore
+  </a>
+  <a class="item item-icon-left" ng-click="deletePermanent(singletaskinfo.task_id)" ng-show="singletaskinfo.task_deleted === 1">
+    <i class="icon ion-trash-a"></i>
+    Permanently Delete
+  </a>
+  </list>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<style type="text/css">
+	.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+a.label:hover,
+a.label:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.label:empty {
+  display: none;
+}
+.btn .label {
+  position: relative;
+  top: -1px;
+}
+.label-default {
+  background-color: #777777;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+  background-color: #5e5e5e;
+}
+.label-primary {
+  background-color: #337ab7;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #286090;
+}
+.label-success {
+  background-color: #5cb85c;
+}
+.label-success[href]:hover,
+.label-success[href]:focus {
+  background-color: #449d44;
+}
+.label-info {
+  background-color: #5bc0de;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+  background-color: #31b0d5;
+}
+.label-warning {
+  background-color: #f0ad4e;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+  background-color: #ec971f;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+  background-color: #c9302c;
+}
+</style>

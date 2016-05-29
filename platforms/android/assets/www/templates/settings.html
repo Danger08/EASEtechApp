@@ -1,0 +1,188 @@
+<ion-view style="" title="Settings" animation="slide-left-right">
+    <ion-content class="has-header" overflow-scroll="true" padding="false">
+
+<!-- <style type="text/css" media="screen">
+  .item-avatar > img:first-child{
+    max-height: 100px;
+    max-width: 100px;
+
+  }
+  .item-avatar{
+    min-height: 150px;
+    padding-left: 0px;
+  }
+  .item-avatar > img:first-child{
+    position: relative;
+  }
+</style>
+
+
+<div class="item-avatar">
+<img ng-src="cdvfile://localhost/persistent/android/data/com.ionicframework.easetechapp568546/files/try.jpg" style="height:auto;width:33%;display:block;margin:auto;" >
+</div> -->
+<div class="list card" style="height:auto;width:40%;display:block;margin:auto;margin-top:10%;">
+<div class="item item-image" >
+    <img ng-src="{{profile.userProfilePic}}" >
+  </div>
+</div>
+<div>
+
+<center><h4>
+  <i class="ion-ios-circle-outline balanced" aria-hidden="true" style="color:#82BB05" ng-show="me.status===0"></i>
+      <i class="ion-checkmark-circled balanced" aria-hidden="true" style="color:#7FBA00" ng-show="me.status===1"></i>
+      <i class="ion-android-time balanced" aria-hidden="true" style="color:#FCD116" ng-show="me.status===2"></i>
+      <i class="ion-minus-circled balanced" aria-hidden="true" style="color:#E81123" ng-show="me.status===3"></i>
+      <i class="ion-ios-circle-outline balanced" aria-hidden="true" style="color:#C9DD9D" ng-show="me.status===4"></i>
+  {{" " + profileData.firstname + " " + profileData.lastname + " "}}</h4></center>
+</div>
+</ion-list>
+   <label class="item item-input item-select">
+    <div class="input-label">
+      Change Status
+    </div>
+
+    <select  ng-model="settings.status" ng-change="changeStatus(settings.status)" ng-init="settings.status = statusoption[me.status]" ng-options="option.name for option in statusoption track by option.value">
+
+    </select>
+  </label>
+
+
+	  <div class="item item-divider item-button-right" style="padding-bottom:15px;padding-top:15px;">
+    Profile information
+    <button class="button button-outline button-assertive" ng-click="openModal()" style="margin-bottom:15px;">
+      <i class="icon ion-edit" ></i>
+    </button>
+  </div>
+
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-map"></i>
+    Address :
+     <span class="item-note" style="color:black;">
+      {{profileData.address}}
+    </span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-email"></i>
+    E Mail : <span class="item-note" style="color:black;">
+     {{profileData.email}}
+    </span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-earth"></i>
+    Website : <span class="item-note" style="color:black;">
+      {{profileData.website}}
+    </span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-iphone"></i>
+    Mobile number : <span class="item-note" style="color:black;">
+      {{profileData.mobile}}
+    </span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-person"></i>
+    Birth Date : <span class="item-note" style="color:black;">
+      {{parseDate(profileData.birthdate)}}
+    </span>
+  </a>
+  <a class="item item-icon-left" href="#" ng-click="openModal1()">
+    <i class="icon ion-locked"></i>
+    Change Password
+  </a>
+  <a class="item item-icon-left" href="#" ng-click="settingsc.signOut()">
+    <i class="icon ion-log-out"></i>
+    Log out
+  </a>
+
+</div>
+
+    </ion-content>
+</ion-view>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-assertive">
+<h1 class="title">Edit Profile</h1>
+<div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+</ion-header-bar>
+<ion-content>
+
+  <div class="list card" style="width:60%;height:auto;margin: 10px 20% 10px 20%;">
+
+    <div class="item item-image" >
+        <img ng-src="{{profile.userProfilePic}}" >
+      </div>
+
+    <a class="item item-icon-right assertive" ng-click="getFile()">
+   <i class="icon ion-upload"></i>
+   <center> <strong> Change Profile Picture </strong> </center>
+ </a>
+  </div>
+  <center>{{status}}</center>
+<progress  max="1" id="ft-prog" value="{{download.progress}}"></progress>
+<div class="list">
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="John" ng-model="profileData.firstname">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Last Name</span>
+    <input type="text" placeholder="Doe" ng-model="profileData.lastname">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">address</span>
+    <input type="text" placeholder="" ng-model="profileData.address">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Email</span>
+    <input type="text" placeholder="john@suhr.com" ng-model="profileData.email">
+  </label>
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Website</span>
+    <input type="text" placeholder="www.johndoe.com" ng-model="profileData.website">
+  </label>
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Mobile number</span>
+    <input type="text" placeholder="(63) 943 406 5099" ng-model="profileData.mobile">
+  </label>
+      <label class="item item-input item-stacked-label">
+    <span class="input-label">Birth Date (DD/MM/YYYY)</span>
+    <input type="date" ng-model="profileData.birthdate">
+  </label>
+</div>
+<div class="padding">
+        <button class="button button-block button-assertive" ng-click="updateProfile()">Save Changes</button>
+</div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+<script id="my-modal1.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-assertive">
+<h1 class="title">Change Password</h1>
+<div class="button button-clear" ng-click="closeModal1()"><span class="icon ion-close"></span></div>
+</ion-header-bar>
+<ion-content>
+
+
+<div class="list">
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Current Password</span>
+    <input type="password" placeholder="" ng-model="password.old" >
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">New Password</span>
+    <input type="password" placeholder="" ng-model="password.new" >
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Confirm New Password</span>
+    <input type="password" placeholder="" ng-model="password.cnew">
+  </label>
+</div>
+
+        <button class="button button-block button-assertive" ng-click="changePassword(password.old,password.new,password.cnew)">Save Changes</button>
+</div>
+    </ion-content>
+  </ion-modal-view>
+</script>

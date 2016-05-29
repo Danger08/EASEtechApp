@@ -1,0 +1,77 @@
+
+<ion-view style="" title="Add Tasks" class="tabs-assertive" animation="slide-left-right">
+
+
+<ion-nav-bar class="bar-assertive">
+
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+
+</ion-nav-bar>
+
+
+<ion-content class="padding has-header" ng-init="ntask.category = 'Web Design and Development'; ntask.projectname = 'None'; ntask.priority ='Medium';">
+<form style="" class="list" ng-submit="ntask.addTask()">
+	<div class="list">
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label" >Taskname</span>
+			<input type="text" placeholder="Example Task" ng-model="ntask.taskname">
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Task Description</span>
+			<textarea rows="4" cols="50" placeholder="Example Task description" ng-model="ntask.desc"></textarea>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Start date</span>
+			<input type="date" ng-model="ntask.startdate">
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Due date</span>
+			<input type="date" ng-model="ntask.duedate">
+		</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">
+				Project
+			</div>
+			<select ng-model="ntask.projectname">
+				<option selected>None</option>
+			</select>
+		</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">
+				Category
+			</div>
+
+			<select ng-model="ntask.category">
+				 <option>Web Design and Development</option>
+                    <option >Graphic Design</option>
+                    <option >Content Writing</option>
+                    <option >SEO</option>
+                    <option >Back Office Support</option>
+                    <option >Help Desk Services</option>
+			</select>
+		</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">
+				Priority
+			</div>
+			<select ng-model="ntask.priority">
+				<option selected>Medium</option>
+				<option >High</option>
+				<option>Low</option>
+			</select>
+		</label>
+	</div>
+ <button class="button button-block button-assertive" type="submit" >
+                        Save Task
+                    </button>
+</form>
+</ion-content>
+</ion-view>
